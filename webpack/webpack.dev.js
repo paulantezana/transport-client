@@ -23,7 +23,7 @@ module.exports = merge(common, {
         // host: HOST,
 
         compress    : true,
-        port        : 3001,
+        port        : 3002,
         open        : true,
         // stats       : 'errors-only',
     },

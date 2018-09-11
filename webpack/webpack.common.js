@@ -129,10 +129,10 @@ module.exports = {
             // disable: IS_DEV,
         }),
         // new webpack.EnvironmentPlugin(['NODE_ENV']),
-        // new FaviconsWebpackPlugin({
-        //     logo: './assets/logo-solid.png',
-        //     // background: '#1890ff',
-        //     title: 'RQSystem',
-        // })
+        new FaviconsWebpackPlugin({
+            logo: './assets/logo.png',
+            // background: '#1890ff',
+            title: 'RQSystem',
+        })
     ]
 };
