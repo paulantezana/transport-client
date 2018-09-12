@@ -53,6 +53,7 @@
     "dva": "^2.3.2",
     "dva-loading": "^2.0.4",
     "enquire-js": "^0.2.1",
+    "express": "^4.16.3",
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
     "moment": "^2.19.3",
