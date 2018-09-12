@@ -7,19 +7,19 @@ const menuData = [
         path: '',
     },
     {
-        name: 'Empresas',
-        icon: 'flag',
-        path: 'companies',
+        name: 'Picadas',
+        icon: 'compass',
+        path: 'chopped',
     },
     {
-        name: 'Alumnos',
-        icon: 'contacts',
-        path: 'students',
+        name: 'Vehículos',
+        icon: 'car',
+        path: 'vehicles',
     },
     {
-        name: 'Profesores',
-        icon: 'user',
-        path: 'teachers',
+        name: 'Monitoreo',
+        icon: 'google',
+        path: 'monitoring',
     },
     {
         name: 'Config',
@@ -30,18 +30,6 @@ const menuData = [
                 name: 'General',
                 icon: 'tool',
                 path: 'general',
-                authority: 'sa',
-            },
-            {
-                name: 'Modulos',
-                icon: 'folder',
-                path: 'modules',
-            },
-            {
-                name: 'Programas',
-                icon: 'audit',
-                path: 'programs',
-                authority: 'sa',
             },
             {
                 name: 'Perfil',

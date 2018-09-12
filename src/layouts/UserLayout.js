@@ -8,13 +8,11 @@ import GlobalFooter from 'components/GlobalFooter';
 import LoginPage from '../routes/User/Login';
 import ForgotPage from '../routes/User/Forgot';
 
-import lines from '../assets/lines.png';
-
 class UserLayout extends React.PureComponent {
     render(){
         const { match } = this.props;
         return (
-            <div className={styles.container} style={{backgroundImage: `url(${lines})`}}>
+            <div className={styles.container}>
                 <Switch>
                     <Route exact path={`${match.url}/login`} component={LoginPage}/>
                     <Route exact path={`${match.url}/forgot`} component={ForgotPage}/>

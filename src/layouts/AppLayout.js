@@ -19,14 +19,8 @@ import logoWhite from 'assets/logo-white.png';
 import logo from 'assets/logo.png';
 import { app as appConfig } from 'config/app';
 
-// import Company from 'routes/Company';
 import Dashboard from 'routes/Dashboard';
-// import Module from 'routes/Module';
-// import Setting from 'routes/Setting';
-// import Profile from 'routes/User/Profile';
-// import Student from 'routes/Student';
-// import Teacher from 'routes/Teacher';
-// import Program from 'routes/Program';
+import Monitoring from 'routes/Monitoring';
 
 
 const { Header, Content, Footer } = Layout;
@@ -156,13 +150,7 @@ class AppLayout extends Component{
                     <Content style={{ height: '100%', margin: '24px 24px 0' }}>
                         <Switch>
                             <PrivateRoute exact path={match.url} component={Dashboard}/>
-                            {/* <PrivateRoute exact path={`${match.url}companies`} component={Company}/>
-                            <PrivateRoute path={`${match.url}students`} component={Student}/>
-                            <PrivateRoute exact path={`${match.url}teachers`} component={Teacher}/>
-                            <PrivateRoute exact path={`${match.url}setting/general`} component={Setting}/>
-                            <PrivateRoute exact path={`${match.url}setting/modules`} component={Module}/>
-                            <PrivateRoute exact path={`${match.url}setting/profile`} component={Profile}/>
-                            <PrivateRoute exact path={`${match.url}setting/programs`} component={Program}/> */}
+                            <PrivateRoute exact path={`${match.url}monitoring`} component={Monitoring}/>
                             <PrivateRoute component={Exeption404}/>
                         </Switch>
                     </Content>

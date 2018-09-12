@@ -27,9 +27,9 @@ class LoginForm extends Component{
         const { getFieldDecorator } = this.props.form;
         const { loading } = this.props;
         return(
-            <Card className={styles.container}>
+            <Card className={styles.container} bordered={false}>
                 <Form onSubmit={this.handleSubmit}>
-                    <h1 className={styles.title}>Ingresa a tu cuenta</h1>
+                    <h1 className={styles.title}>LOGIN</h1>
                     <Form.Item hasFeedback>
                         {
                             getFieldDecorator('user_name', {
@@ -66,7 +66,7 @@ class LoginForm extends Component{
 
 const LoginPage = Form.create()(LoginForm)
 
-const mapStateToProps = ({ user, loading }) => {
+const mapStateToProps = ({ loading }) => {
     return {
         loading: loading.effects['user/login'],
     }

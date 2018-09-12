@@ -1,14 +1,14 @@
 export const app = {
     version: '0.0.1',
-    name: 'Review',
+    name: 'TRANS',
     description: 'paulantezana.com',
     author: 'paul antezana',
 }
 
-// export const service = {
-//     path: "http://localhost:1323",
-//     api_path: "http://localhost:1323/api/v1",
-// }
+export const service = {
+    path: "http://localhost:1323",
+    api_path: "http://localhost:1323/api/v1",
+}
 
 export const docProperties = {
     pageSize: 'A4',
@@ -16,7 +16,7 @@ export const docProperties = {
     creator: app.author,
 }
 
-export const service = {
-    path: "https://review-server-ql.herokuapp.com",
-    api_path: "https://review-server-ql.herokuapp.com/api/v1",
-}
+// export const service = {
+//     path: "https://review-server-ql.herokuapp.com",
+//     api_path: "https://review-server-ql.herokuapp.com/api/v1",
+// }
