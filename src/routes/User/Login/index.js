@@ -1,13 +1,16 @@
 import React, { Component } from "react";
-import { Form, Icon, Input, Button, Checkbox, Card } from 'antd';
+import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
 
-import styles from './Login.scss';
+import styles from './index.scss';
 
 class LoginForm extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            
+        };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -27,8 +30,8 @@ class LoginForm extends Component{
         const { getFieldDecorator } = this.props.form;
         const { loading } = this.props;
         return(
-            <Card className={styles.container} bordered={false}>
-                <Form onSubmit={this.handleSubmit}>
+            <div>
+                <Form onSubmit={this.handleSubmit} className={styles.form}>
                     <h1 className={styles.title}>LOGIN</h1>
                     <Form.Item hasFeedback>
                         {
@@ -59,14 +62,14 @@ class LoginForm extends Component{
                         <Button type="primary" loading={loading} htmlType="submit" className={styles.submit}>Iniciar Sesión</Button>
                     </Form.Item>
                 </Form>
-            </Card>
+            </div>
         )
     }
 }
 
 const LoginPage = Form.create()(LoginForm)
 
-const mapStateToProps = ({ loading }) => {
+const mapStateToProps = ({ loading}) => {
     return {
         loading: loading.effects['user/login'],
     }

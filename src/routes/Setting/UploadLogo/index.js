@@ -3,7 +3,7 @@ import { Upload, Button, Icon, Row, Col, Avatar } from 'antd';
 import { connect } from 'dva';
 import { service } from 'config/app';
 
-class Demo extends React.Component {
+class UploadLogo extends React.Component {
 
     constructor(props){
         super(props);
@@ -17,10 +17,10 @@ class Demo extends React.Component {
     handleUpload(){
         const { fileList } = this.state;
         this.props.dispatch({
-            type: "user/uploadAvatar",
+            type: "global/uploadLogo",
             payload: {
-                id: this.props.user.id,
-                picture: fileList[0],
+                id: this.props.setting.id,
+                logo: fileList[0],
             },
         })
     }
@@ -48,12 +48,12 @@ class Demo extends React.Component {
       fileList: this.state.fileList,
     };
 
-    const { user } = this.props;
+    const { setting } = this.props;
 
     return (
         <Row>
             <Col xs={24} md={12} lg={8} xl={6}>
-                <Avatar shape="square" size={200} src={`${service.path}/${user.avatar}`}/>
+                <Avatar shape="square" size={200} src={`${service.path}/${setting.logo}`}/>
             </Col>
             <Col xs={24} md={12} lg={8} xl={6}>
                 <Upload {...props}>
@@ -68,7 +68,7 @@ class Demo extends React.Component {
                     disabled={this.state.fileList.length === 0}
                     loading={uploading}
                     >
-                    {uploading ? 'Uploading' : 'Start Upload' }
+                    { uploading ? 'Uploading' : 'Start Upload' }
                 </Button>
             </Col>
         </Row>
@@ -78,8 +78,8 @@ class Demo extends React.Component {
 
 const mapStateToProps = ({global}) => {
     return {
-        user: global.user,
+        setting: global.setting,
     }
 }
 
-export default connect(mapStateToProps)(Demo);
+export default connect(mapStateToProps)(UploadLogo);

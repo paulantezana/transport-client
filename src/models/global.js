@@ -5,7 +5,6 @@ import { message } from 'antd';
 
 export default {
     namespace: 'global',
-  
     state: {
       collapsed: false,
       setting: {},

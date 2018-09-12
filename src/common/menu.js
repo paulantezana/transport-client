@@ -12,9 +12,9 @@ const menuData = [
         path: 'chopped',
     },
     {
-        name: 'Vehículos',
+        name: 'Mobil',
         icon: 'car',
-        path: 'vehicles',
+        path: 'mobiles',
     },
     {
         name: 'Monitoreo',
@@ -24,19 +24,7 @@ const menuData = [
     {
         name: 'Config',
         icon: 'setting',
-        path: 'setting',
-        children: [
-            {
-                name: 'General',
-                icon: 'tool',
-                path: 'general',
-            },
-            {
-                name: 'Perfil',
-                icon: 'user',
-                path: 'profile',
-            }
-        ],
+        path: 'settings',
     },
 ];
 

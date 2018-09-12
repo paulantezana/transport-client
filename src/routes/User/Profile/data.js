@@ -47,13 +47,12 @@ const ProfileForm = Form.create()(
             e.preventDefault();
             const { data, dispatch } = this.props;
             this.props.form.validateFields((err, values) => {
-                if (err) {
-                    return;
+                if (!err) {
+                    dispatch({
+                        type: "global/updateProfile",
+                        payload: { ...values, id: data.id },
+                    })
                 }
-                dispatch({
-                    type: "global/updateProfile",
-                    payload: { ...values, id: data.id },
-                })
             });
         }
         render(){
@@ -62,6 +61,17 @@ const ProfileForm = Form.create()(
             return (
                 <Fragment>
                     <Form onSubmit={this.handleSubmit}>
+                        <Form.Item hasFeedback {...formItemLayout} label="DNI">
+                            {getFieldDecorator('dni', {
+                                initialValue: data.dni,
+                                rules: [
+                                    { required: true, message: '¡Por favor ingrese su DNI!' },
+                                    { pattern: /^[0-9]{8}$/, message: '¡Ingrese un DNI válido!' }
+                                ],
+                            })(
+                                <Input/>
+                            )}
+                        </Form.Item>
                         <Form.Item hasFeedback {...formItemLayout} label="Email">
                             {getFieldDecorator('email', {
                                 initialValue: data.email,
@@ -79,6 +89,30 @@ const ProfileForm = Form.create()(
                                 rules: [{ required: true, message: '¡Ingrese un nombre válido!' }],
                             })(
                                 <Input/>
+                            )}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Nombres">
+                            {getFieldDecorator('first_name', {
+                                initialValue: data.first_name,
+                            })(
+                                <Input/>
+                            )}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Apellidos">
+                            {getFieldDecorator('last_name', {
+                                initialValue: data.last_name,
+                            })(
+                                <Input/>
+                            )}
+                        </Form.Item>
+                        <Form.Item label="Genero"  {...formItemLayout} >
+                            {getFieldDecorator('gender', {
+                                initialValue: data.gender,
+                            })(
+                                <RadioGroup>
+                                    <Radio value="0">Femenino</Radio>
+                                    <Radio value="1">Masculino</Radio>
+                                </RadioGroup>
                             )}
                         </Form.Item>
                         <Form.Item  {...tailFormItemLayout} >

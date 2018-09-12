@@ -13,7 +13,7 @@ import styles from './index.scss';
 const Step = Steps.Step;
 
 const Forgout = ({user})=>(
-    <Card className={styles.container}>
+    <div className={styles.container}>
         <Steps size="small" current={user.forgotStep}>
             <Step title="Buscar"/>
             <Step title="Validar"/>
@@ -32,7 +32,7 @@ const Forgout = ({user})=>(
             }
         </div>
         <Link to="/user/login">Login</Link>
-    </Card>
+    </div>
 )
 
 const mapStateToProps = ({user}) => {

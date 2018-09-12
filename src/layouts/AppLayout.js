@@ -21,9 +21,13 @@ import { app as appConfig } from 'config/app';
 
 import Dashboard from 'routes/Dashboard';
 import Monitoring from 'routes/Monitoring';
+import Mobile from 'routes/Mobile';
+import Setting from 'routes/Setting';
+import Profile from 'routes/User/Profile';
+import User from 'routes/User/Users';
 
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 const Exeption404 = () => <Exception type="404" style={{ minHeight: 500, height: '80%' }} linkElement={Link} />
 
 // Media queryes
@@ -75,14 +79,14 @@ class AppLayout extends Component{
         switch (key) {
             case 'logout':
                 dispatch({
-                    type: 'user/logout'
+                    type: 'Setting/logout'
                 })
                 break;
             case 'setting':
-                dispatch(routerRedux.push('/setting/general'));
+                dispatch(routerRedux.push('/settings'));
                 break;
             case 'profile':
-                dispatch(routerRedux.push('/setting/profile'));
+                dispatch(routerRedux.push('/users/profile'));
                 break;
             default:
                 break;
@@ -147,10 +151,14 @@ class AppLayout extends Component{
                             onCollapse={this.handleMenuCollapse}
                         />
                     </Header>
-                    <Content style={{ height: '100%', margin: '24px 24px 0' }}>
+                    <Content style={{ height: '100%' }}>
                         <Switch>
                             <PrivateRoute exact path={match.url} component={Dashboard}/>
                             <PrivateRoute exact path={`${match.url}monitoring`} component={Monitoring}/>
+                            <PrivateRoute exact path={`${match.url}mobiles`} component={Mobile}/>
+                            <PrivateRoute exact path={`${match.url}users`} component={User}/>
+                            <PrivateRoute exact path={`${match.url}users/profile`} component={Profile}/>
+                            <PrivateRoute exact path={`${match.url}settings`} component={Setting}/>
                             <PrivateRoute component={Exeption404}/>
                         </Switch>
                     </Content>
@@ -168,7 +176,7 @@ class AppLayout extends Component{
 
         return (
             <ContainerQuery query={query}>
-                {params => <div className={classNames(params)}>{layout}</div>}
+                { params => <div className={classNames(params)}>{layout}</div> }
             </ContainerQuery>
         )
     }
