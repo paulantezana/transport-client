@@ -44,8 +44,8 @@ class DataList extends Component{
             },
             {
                 title: 'Clave',
-                dataIndex: 'password',
-                key: 'password',
+                dataIndex: 'key',
+                key: 'key',
             },
             {
                 title: 'Conductor',

@@ -48,6 +48,15 @@ const AddForm = Form.create()(
                                 )
                             }
                         </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Clave">
+                            {
+                                getFieldDecorator('key', {
+                                    initialValue: data.key,
+                                })(
+                                    <Input placeholder="Clave"/>
+                                )
+                            }
+                        </Form.Item>
                         <Form.Item  {...formItemLayout} label="Estado">
                             {
                                 getFieldDecorator('state',{
