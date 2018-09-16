@@ -12,8 +12,23 @@ const menuData = [
         path: 'chopped',
     },
     {
-        name: 'Mobil',
+        name: 'Servicios',
+        icon: 'cluster',
+        path: 'services',
+    },
+    {
+        name: 'Empresas',
+        icon: 'bank',
+        path: 'companies',
+    },
+    {
+        name: 'Vehiculos',
         icon: 'car',
+        path: 'vehicles',
+    },
+    {
+        name: 'Mobil',
+        icon: 'mobile',
         path: 'mobiles',
     },
     {

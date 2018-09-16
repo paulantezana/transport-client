@@ -8,6 +8,7 @@ export const app = {
 // export const service = {
 //     path: "http://localhost:1323",
 //     api_path: "http://localhost:1323/api/v1",
+//     socket_location: "ws://localhost:1323/api/v1/ws/location",
 // }
 
 export const docProperties = {
@@ -19,4 +20,5 @@ export const docProperties = {
 export const service = {
     path: "https://transport-fast.herokuapp.com",
     api_path: "https://transport-fast.herokuapp.com/api/v1",
+    socket_location: "wss://transport-fast.herokuapp.com/api/v1/ws/location",
 }
