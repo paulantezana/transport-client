@@ -13,7 +13,7 @@ class DataList extends Component{
             filteredInfo: null,
         }
         this.onChange = this.onChange.bind(this);
-        this.clearAllFilters = this.clearAllFilters.bind(this);
+        this.clearPaginateFilters = this.clearPaginateFilters.bind(this);
     }
 
     onChange(pagination, filters, sorter) {
@@ -23,7 +23,7 @@ class DataList extends Component{
         });
     }
 
-    clearAllFilters(){
+    clearPaginateFilters(){
         this.setState({
             sortedInfo: null,
             filteredInfo: null,
@@ -35,22 +35,12 @@ class DataList extends Component{
         let { sortedInfo, filteredInfo } = this.state;
         sortedInfo = sortedInfo || {};
         filteredInfo = filteredInfo || {};
-        const { onPageChange, onUpdate, onShowModalEdit, onDelete, dataSource, loadingAll, loadingUpdate, total, pageSize, current } = this.props;
+        const { onPageChange, onUpdate, onShowModalEdit, onDelete, dataSource, loadingPaginate, loadingUpdate, total, pageSize, current } = this.props;
         const columns = [
             {
                 title: 'Nombre',
                 dataIndex: 'name',
                 key: 'name',
-            },
-            {
-                title: 'Clave',
-                dataIndex: 'key',
-                key: 'key',
-            },
-            {
-                title: 'Conductor',
-                dataIndex: 'driver',
-                key: 'driver',
             },
             {
                 title: 'Estado',
@@ -95,7 +85,7 @@ class DataList extends Component{
                 <StandardTable 
                     columns={columns}
                     dataSource={dataSource}
-                    loading={loadingAll}
+                    loading={loadingPaginate}
                     pagination={false}
                     onChange={this.onChange}
                     minWidth={800}

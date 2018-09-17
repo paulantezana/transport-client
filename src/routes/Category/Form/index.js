@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Modal, Form, Input, Checkbox } from 'antd';
+import { Modal, Form, Input, Checkbox, Select } from 'antd';
 import { connect } from 'dva';
+
+const Option = Select.Option;
 
 const formItemLayout = {
     labelCol: { span: 8 },
@@ -16,11 +18,11 @@ const AddForm = Form.create()(
             }
         }
         render(){
-            const { visible, onCancel, onOk, form, confirmLoading, data } = this.props;
+            const { visible, onCancel, onOk, form, confirmLoading, data, categories } = this.props;
             const { getFieldDecorator } = form;
             return (
                 <Modal 
-                    title="categoryo"
+                    title="Categoria"
                     okText="Guardar"
                     confirmLoading={confirmLoading}
                     onCancel={onCancel}
@@ -41,19 +43,16 @@ const AddForm = Form.create()(
                         </Form.Item>
                         <Form.Item hasFeedback {...formItemLayout} label="Conductor">
                             {
-                                getFieldDecorator('driver', {
-                                    initialValue: data.driver,
+                                getFieldDecorator('category_parent_id', {
+                                    initialValue: data.category_parent_id,
                                 })(
-                                    <Input placeholder="Conductor"/>
-                                )
-                            }
-                        </Form.Item>
-                        <Form.Item hasFeedback {...formItemLayout} label="Clave">
-                            {
-                                getFieldDecorator('key', {
-                                    initialValue: data.key,
-                                })(
-                                    <Input placeholder="Clave"/>
+                                    <Select placeholder="Categoria padre">
+                                        {
+                                            categories.map((category, key)=>
+                                                <Option key={category.id} value={category.id}>{category.name}</Option>
+                                            )
+                                        }
+                                    </Select>
                                 )
                             }
                         </Form.Item>
@@ -111,11 +110,13 @@ class ModalForm extends Component{
         const {
             currentItem,
             modalType,
-            modalVisible
+            modalVisible,
+            categories,
         } = category;
 
         const categoryModal = {
             data: modalType == 'create' ? { state: true } : currentItem,
+            categories,
             disabled: modalType == 'detail',
             type: modalType,
             visible: modalVisible,

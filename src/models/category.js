@@ -1,4 +1,4 @@
-import { categoryAll, categoryCreate, categoryUpdate, categoryDelete, categorySearch } from '../services/category';
+import { categoryAll, categoryPaginate, categoryCreate, categoryUpdate, categoryDelete, categorySearch } from '../services/category';
 import { Modal, message } from 'antd';
 export default {
     namespace: 'category',
@@ -8,6 +8,8 @@ export default {
         current: null,
         searchText: "",
 
+        categories: [],
+
         modalVisible: false,
         currentItem: {},
         modalType: 'create',
@@ -15,15 +17,23 @@ export default {
         searchResult: [],
     },
     effects: {
-        *all({ payload }, { select, call, put }){
+        *paginate({ payload }, { select, call, put }){
             const setting = yield select(({ global }) => global.setting); // Get setting item
-            const response = yield call(categoryAll,{...payload, limit: setting.item});
+            const response = yield call(categoryPaginate,{...payload, limit: setting.item});
             if(response.success){
-                yield put({type: 'allSuccess', payload: {
+                yield put({type: 'paginateSuccess', payload: {
                     list: response.data,
                     total: response.total,
                     current: response.current_page,
                 }})
+            }else{
+                Modal.error({title: 'Error al consultar el categoryo', content: response.message});
+            }
+        },
+        *all({ payload }, { select, call, put }){
+            const response = yield call(categoryAll);
+            if(response.success){
+                yield put({ type: 'allSuccess', payload: response.data })
             }else{
                 Modal.error({title: 'Error al consultar el categoryo', content: response.message});
             }
@@ -41,7 +51,7 @@ export default {
             if (response.success){
                 yield put({type: 'resetcategory'});
                 Modal.success({title: 'Crear categoryo', content: response.message});
-                yield put({type: 'all'});
+                yield put({type: 'paginate'});
             }else{
                 Modal.error({title: 'Error al crear categoryo', content: response.message});
             }
@@ -61,15 +71,18 @@ export default {
             if (response.success){
                 yield put({type: 'resetcategory'});
                 message.success("Se elimino el categoryo con el id = "  + payload.id);
-                yield put({type: 'all'});
+                yield put({type: 'paginate'});
             }else{
                 Modal.error({title: 'Error al actualizar el categoryo', content: response.message});
             }
         },
     },
     reducers: {
-        allSuccess(state, { payload }){
+        paginateSuccess(state, { payload }){
             return {...state, ...payload };
+        },
+        allSuccess(state, { payload }){
+            return {...state, categories: payload };
         },
         searchSuccess(state, { payload }){
             return {...state,  searchResult: payload };
