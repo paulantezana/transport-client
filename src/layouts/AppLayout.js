@@ -81,7 +81,7 @@ class AppLayout extends Component{
         switch (key) {
             case 'logout':
                 dispatch({
-                    type: 'Setting/logout'
+                    type: 'user/logout'
                 })
                 break;
             case 'setting':

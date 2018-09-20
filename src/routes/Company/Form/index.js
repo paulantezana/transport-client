@@ -20,7 +20,7 @@ const AddForm = Form.create()(
             const { getFieldDecorator } = form;
             return (
                 <Modal 
-                    title="companyo"
+                    title="Empresa"
                     okText="Guardar"
                     confirmLoading={confirmLoading}
                     onCancel={onCancel}
@@ -39,21 +39,42 @@ const AddForm = Form.create()(
                                 )
                             }
                         </Form.Item>
-                        <Form.Item hasFeedback {...formItemLayout} label="Conductor">
+                        <Form.Item hasFeedback {...formItemLayout} label="RUC">
                             {
-                                getFieldDecorator('driver', {
-                                    initialValue: data.driver,
+                                getFieldDecorator('ruc', {
+                                    initialValue: data.ruc,
+                                    rules: [
+                                        { required: true, message: '¡Por un RUC!' },
+                                    ],
                                 })(
-                                    <Input placeholder="Conductor"/>
+                                    <Input placeholder="RUC"/>
                                 )
                             }
                         </Form.Item>
-                        <Form.Item hasFeedback {...formItemLayout} label="Clave">
+                        <Form.Item hasFeedback {...formItemLayout} label="Gerente">
                             {
-                                getFieldDecorator('key', {
-                                    initialValue: data.key,
+                                getFieldDecorator('manager', {
+                                    initialValue: data.manager,
                                 })(
-                                    <Input placeholder="Clave"/>
+                                    <Input placeholder="Gerente"/>
+                                )
+                            }
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Dueño">
+                            {
+                                getFieldDecorator('owner', {
+                                    initialValue: data.owner,
+                                })(
+                                    <Input placeholder="Dueño"/>
+                                )
+                            }
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Dirección">
+                            {
+                                getFieldDecorator('address', {
+                                    initialValue: data.address,
+                                })(
+                                    <Input placeholder="Dirección"/>
                                 )
                             }
                         </Form.Item>
