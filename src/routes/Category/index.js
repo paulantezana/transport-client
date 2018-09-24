@@ -6,66 +6,28 @@ import styles from './index.scss';
 import List from './List';
 import ModalForm from './Form';
 
-const Search = Input.Search;
-
 class Category extends Component{
     constructor(props){
         super(props);
-        this.onQueryPaginate = this.onQueryPaginate.bind(this);
+        this.onQueryAll = this.onQueryAll.bind(this);
     }
     componentDidMount(){
-        this.onQueryPaginate();
+        this.onQueryAll();
     }
-    onQueryPaginate(clear){
-        const { dispatch, category: {searchText} } = this.props;
+    onQueryAll(){
+        const { dispatch } = this.props;
         dispatch({
-            type: 'category/paginate',
-            payload: {
-                search: clear ? '' : searchText,
-            }
+            type: 'category/all',
+            payload: { tree: true }
         });
     }
     render(){
-        const { dispatch, setting, category, loadingPaginate, loadingUpdate} = this.props;
-        const { onQueryPaginate } = this;
-        const {
-            list,
-            total,
-            current,
-            searchText,
-        } = category;
+        const { dispatch, category, loadingAll, loadingUpdate} = this.props;
+        const { list } = category;
 
         const categoryListProps = {
-            current,
-            total,
-            pageSize: setting.item,
             dataSource: list,
-            loadingPaginate: loadingPaginate,
-            loadingUpdate: loadingUpdate,
-            onPageChange(page){
-                dispatch({
-                    type:'category/paginate',
-                    payload:{
-                        current_page: page,
-                        search: searchText,
-                    }
-                });
-            },
-            onClear(){
-                // Limpiar el campo search text
-                dispatch({
-                    type: 'category/setSearchText',
-                    payload: '',
-                });
-                // Query para mostrar todo los categoryos
-                onQueryPaginate(true);
-            },
-            onUpdate(param){
-                dispatch({
-                    type: 'category/update',
-                    payload: param
-                });
-            },
+            loadingAll: loadingAll,
             onShowModalEdit(type, currentItem){
                 onShowModal(type, currentItem)
             },
@@ -84,13 +46,7 @@ class Category extends Component{
             });
             dispatch({
                 type: 'category/all',
-            });
-        }
-
-        const onSearchText = (search)=>{
-            dispatch({
-                type: 'category/setSearchText',
-                payload: search
+                payload: { tree: false },
             });
         }
 
@@ -98,8 +54,7 @@ class Category extends Component{
             <Card bordered={false}>
                 <div className={styles.header}>
                     <Button icon="plus" type="primary" onClick={()=>onShowModal('create')}>Nuevo</Button>
-                    <Button icon="reload" onClick={()=>this.onQueryPaginate()}></Button>
-                    <Search placeholder="Buscar categoria" value={searchText} onChange={e=>onSearchText(e.target.value)} onSearch={value => this.onQueryPaginate()} style={{ width: 200 }}/>
+                    <Button icon="reload" onClick={()=>this.onQueryAll()}></Button>
                     <ModalForm/>
                 </div>
                 <List {...categoryListProps}/>
@@ -108,11 +63,10 @@ class Category extends Component{
     }
 }
 
-const mapStateToProps = ({category, global, loading}) => {
+const mapStateToProps = ({category, loading}) => {
     return {
         category,
-        setting: global.setting,
-        loadingPaginate: loading.effects['category/paginate'],
+        loadingAll: loading.effects['category/all'],
         loadingUpdate: loading.effects['category/update'],
     }
 }

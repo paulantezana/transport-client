@@ -127,7 +127,7 @@ class ModalForm extends Component{
             },
             onCancel(){
                 dispatch({
-                    type: 'category/resetcategory'
+                    type: 'category/resetCategory'
                 });
                 handleCancel();
             }

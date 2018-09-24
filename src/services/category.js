@@ -11,14 +11,6 @@ export async function categoryResetPassword(body) {
 }
 
 // Get all categorys
-export async function categoryPaginate(body) { 
-    return request(`${CATEGORY_API}/paginate`,{
-        method: 'POST',
-        body
-    })
-}
-
-// Get all categorys
 export async function categoryAll(body) { 
     return request(`${CATEGORY_API}/all`,{
         method: 'POST',

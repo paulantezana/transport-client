@@ -24,7 +24,10 @@ class CategoryTree extends React.Component {
 
     componentDidMount(){
         const { dispatch } = this.props;
-        dispatch({type: 'category/tree'});
+        dispatch({
+            type: 'category/all',
+            payload: { tree: true }
+        });
     }
 
     onExpand(expandedKeys){
@@ -72,6 +75,7 @@ class CategoryTree extends React.Component {
                         });
                         dispatch({
                             type: 'category/all',
+                            payload: { tree: false },
                         });
                     }}/>
                     <ModalForm/>
@@ -90,7 +94,7 @@ class CategoryTree extends React.Component {
                     onSelect={this.onSelect}
                     selectedKeys={this.state.selectedKeys}
                 >
-                    {this.renderTreeNodes(category.tree)}
+                    {this.renderTreeNodes(category.list)}
                 </Tree>
             </Fragment>
         );

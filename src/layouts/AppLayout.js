@@ -159,7 +159,7 @@ class AppLayout extends Component{
                             <PrivateRoute exact path={match.url} component={Dashboard}/>
                             <PrivateRoute exact path={`${match.url}monitoring`} component={Monitoring}/>
                             <PrivateRoute exact path={`${match.url}services`} component={Category}/>
-                            <PrivateRoute exact path={`${match.url}companies`} component={Company}/>
+                            <PrivateRoute path={`${match.url}companies`} component={Company}/>
                             <PrivateRoute exact path={`${match.url}vehicles`} component={Vehicle}/>
                             <PrivateRoute exact path={`${match.url}mobiles`} component={Mobile}/>
                             <PrivateRoute exact path={`${match.url}users`} component={User}/>

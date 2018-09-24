@@ -1,9 +1,7 @@
 import React, {Component, Fragment} from 'react';
-import { Pagination, Modal, Tooltip, Switch, Icon } from 'antd';
-import PropTypes from 'prop-types';
+import { Modal, Tooltip,  Icon } from 'antd';
 import StandardTable from 'components/StandardTable';
 import styles from './index.scss';
-import Spacing from 'components/Spacing';
 
 class DataList extends Component{
     constructor(props){
@@ -13,7 +11,7 @@ class DataList extends Component{
             filteredInfo: null,
         }
         this.onChange = this.onChange.bind(this);
-        this.clearPaginateFilters = this.clearPaginateFilters.bind(this);
+        this.clearAllFilters = this.clearAllFilters.bind(this);
     }
 
     onChange(pagination, filters, sorter) {
@@ -23,7 +21,7 @@ class DataList extends Component{
         });
     }
 
-    clearPaginateFilters(){
+    clearAllFilters(){
         this.setState({
             sortedInfo: null,
             filteredInfo: null,
@@ -35,20 +33,12 @@ class DataList extends Component{
         let { sortedInfo, filteredInfo } = this.state;
         sortedInfo = sortedInfo || {};
         filteredInfo = filteredInfo || {};
-        const { onPageChange, onUpdate, onShowModalEdit, onDelete, dataSource, loadingPaginate, loadingUpdate, total, pageSize, current } = this.props;
+        const { onShowModalEdit, onDelete, dataSource, loadingAll } = this.props;
         const columns = [
             {
                 title: 'Nombre',
                 dataIndex: 'name',
                 key: 'name',
-            },
-            {
-                title: 'Estado',
-                key: 'state',
-                width: '60px',
-                render: (a,record)=>(
-                    <Switch size="small" loading={loadingUpdate} checked={a.state} onChange={checked=>onUpdate({id: a.id, state: checked})}/>
-                )
             },
             {
                 title: 'Accion',
@@ -81,39 +71,17 @@ class DataList extends Component{
         ];
     
         return (
-            <div>
-                <StandardTable 
-                    columns={columns}
-                    dataSource={dataSource}
-                    loading={loadingPaginate}
-                    pagination={false}
-                    onChange={this.onChange}
-                    minWidth={800}
-                    // rowSelection={rowSelection}
-                    rowKey={record=>record.id}/>
-                <Spacing/>
-                <Pagination 
-                    showQuickJumper
-                    total={total}
-                    pageSize={pageSize}
-                    defaultCurrent={1}
-                    current={current}
-                    showTotal={total => `Total ${total} items`}
-                    onChange={onPageChange}/>
-            </div>
+            <StandardTable 
+                columns={columns}
+                dataSource={dataSource}
+                loading={loadingAll}
+                pagination={false}
+                onChange={this.onChange}
+                minWidth={800}
+                // rowSelection={rowSelection}
+                rowKey={record=>record.id}/>
         )
     }
 }
-
-DataList.propTypes = {
-    onPageChange: PropTypes.func,
-    onUpdate: PropTypes.func,
-    onDelete: PropTypes.func,
-    onRefresh: PropTypes.func,
-    dataSource: PropTypes.array,
-    loading: PropTypes.any,
-    total: PropTypes.any,
-    current: PropTypes.any
-};
 
 export default DataList;
