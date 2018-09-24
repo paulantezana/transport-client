@@ -10,16 +10,19 @@ const menuData = [
         name: 'Picadas',
         icon: 'compass',
         path: 'chopped',
+        authority: 'company',
     },
     {
         name: 'Servicios',
         icon: 'cluster',
         path: 'services',
+        authority: ['admin','municipality'],
     },
     {
         name: 'Empresas',
         icon: 'bank',
         path: 'companies',
+        authority: ['admin','municipality'],
     },
     {
         name: 'Vehiculos',
@@ -30,6 +33,7 @@ const menuData = [
         name: 'Mobil',
         icon: 'mobile',
         path: 'mobiles',
+        authority: 'company',
     },
     {
         name: 'Monitoreo',

@@ -1,5 +1,6 @@
 import { categoryAll, categoryPaginate, categoryCreate, categoryUpdate, categoryDelete, categorySearch } from '../services/category';
 import { Modal, message } from 'antd';
+import { categorize } from 'utilities/utils';
 export default {
     namespace: 'category',
     state: {
@@ -9,6 +10,7 @@ export default {
         searchText: "",
 
         categories: [],
+        tree: [],
 
         modalVisible: false,
         currentItem: {},
@@ -21,8 +23,9 @@ export default {
             const setting = yield select(({ global }) => global.setting); // Get setting item
             const response = yield call(categoryPaginate,{...payload, limit: setting.item});
             if(response.success){
+                let newData = categorize(response.data);
                 yield put({type: 'paginateSuccess', payload: {
-                    list: response.data,
+                    list: newData,
                     total: response.total,
                     current: response.current_page,
                 }})
@@ -33,7 +36,17 @@ export default {
         *all({ payload }, { select, call, put }){
             const response = yield call(categoryAll);
             if(response.success){
+                console.log(response.data);
                 yield put({ type: 'allSuccess', payload: response.data })
+            }else{
+                Modal.error({title: 'Error al consultar el categoryo', content: response.message});
+            }
+        },
+        *tree({ payload }, { select, call, put }){
+            const response = yield call(categoryAll);
+            if(response.success){
+                let newData = categorize(response.data);
+                yield put({ type: 'treeSuccess', payload: newData })
             }else{
                 Modal.error({title: 'Error al consultar el categoryo', content: response.message});
             }
@@ -83,6 +96,9 @@ export default {
         },
         allSuccess(state, { payload }){
             return {...state, categories: payload };
+        },
+        treeSuccess(state, { payload }){
+            return {...state, tree: payload };
         },
         searchSuccess(state, { payload }){
             return {...state,  searchResult: payload };

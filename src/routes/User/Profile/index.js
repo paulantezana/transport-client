@@ -11,7 +11,7 @@ class Profile extends Component{
     render(){
         return (
             <Card bordered={false}>
-                <Tabs defaultActiveKey="1" tabPosition="left">
+                <Tabs defaultActiveKey="1">
                     <Tabs.TabPane tab={<span><Icon type="user" />Avatar</span>} key="1">
                         <Upload/>
                     </Tabs.TabPane>

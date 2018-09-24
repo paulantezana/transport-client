@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Modal, Form, Input, Checkbox } from 'antd';
+import { Modal, Form, Input, Checkbox, Select } from 'antd';
 import { connect } from 'dva';
+
+const Option = Select.Option;
 
 const formItemLayout = {
     labelCol: { span: 8 },
@@ -11,12 +13,10 @@ const AddForm = Form.create()(
     class extends React.Component{
         constructor(props){
             super(props);
-            this.state = {
-    
-            }
+            this.state = {}
         }
         render(){
-            const { visible, onCancel, onOk, form, confirmLoading, data } = this.props;
+            const { visible, onCancel, onOk, form, confirmLoading, categories, data } = this.props;
             const { getFieldDecorator } = form;
             return (
                 <Modal 
@@ -44,10 +44,28 @@ const AddForm = Form.create()(
                                 getFieldDecorator('ruc', {
                                     initialValue: data.ruc,
                                     rules: [
-                                        { required: true, message: '¡Por un RUC!' },
+                                        { required: true, message: '¡Por favor ingrese un RUC!' },
                                     ],
                                 })(
                                     <Input placeholder="RUC"/>
+                                )
+                            }
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Categoria">
+                            {
+                                getFieldDecorator('category_id', {
+                                    initialValue: data.category_id,
+                                    rules: [
+                                        { required: true, message: 'Por favor elija una categoria' },
+                                    ],
+                                })(
+                                    <Select placeholder="Categoria">
+                                        {
+                                            categories.map((category, key)=>
+                                                <Option key={category.id} value={category.id}>{category.name}</Option>
+                                            )
+                                        }
+                                    </Select>
                                 )
                             }
                         </Form.Item>
@@ -126,7 +144,7 @@ class ModalForm extends Component{
 
         const { handleConfirm, handleCancel } = this;
 
-        const { dispatch, company, loading } = this.props;
+        const { dispatch, company, category, loading } = this.props;
 
         // Recuperando stados y datos desde el modelo company
         const {
@@ -136,6 +154,7 @@ class ModalForm extends Component{
         } = company;
 
         const companyModal = {
+            categories: category.categories,
             data: modalType == 'create' ? { state: true } : currentItem,
             disabled: modalType == 'detail',
             type: modalType,
@@ -160,9 +179,10 @@ class ModalForm extends Component{
     }
 }
 
-const mapStateToProps = ({company, loading}) => {
+const mapStateToProps = ({company, category, loading}) => {
     return {
         company,
+        category,
         loading: loading.effects['company/create'] || loading.effects['company/update'],
     }
 }

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Modal, Form, Input, Checkbox, Select } from 'antd';
+import { Modal, Form, Input, Checkbox } from 'antd';
 import { connect } from 'dva';
-
-const Option = Select.Option;
 
 const formItemLayout = {
     labelCol: { span: 8 },
@@ -18,11 +16,11 @@ const AddForm = Form.create()(
             }
         }
         render(){
-            const { visible, onCancel, onOk, form, confirmLoading, data, categories } = this.props;
+            const { visible, onCancel, onOk, form, confirmLoading, data } = this.props;
             const { getFieldDecorator } = form;
             return (
                 <Modal 
-                    title="Categoria"
+                    title="Empresa"
                     okText="Guardar"
                     confirmLoading={confirmLoading}
                     onCancel={onCancel}
@@ -38,22 +36,6 @@ const AddForm = Form.create()(
                                     ],
                                 })(
                                     <Input placeholder="Nombre"/>
-                                )
-                            }
-                        </Form.Item>
-                        <Form.Item hasFeedback {...formItemLayout} label="Conductor">
-                            {
-                                getFieldDecorator('category_parent_id', {
-                                    initialValue: data.category_parent_id ? data.category_parent_id : 0,
-                                })(
-                                    <Select placeholder="Categoria padre">
-                                        <Option key={0} value={0}>Padre</Option>
-                                        {
-                                            categories.map((category, key)=>
-                                                <Option key={category.id} value={category.id}>{category.name}</Option>
-                                            )
-                                        }
-                                    </Select>
                                 )
                             }
                         </Form.Item>
@@ -82,14 +64,14 @@ class ModalForm extends Component{
     }
 
     handleConfirm(modalType){
-        const { dispatch, category: {currentItem} } = this.props;
+        const { dispatch, vehicle: {currentItem} } = this.props;
         const form = this.formRef.props.form;
         form.validateFields((err, values) => {
             if (err) {
                 return;
             }
             dispatch({
-                type: `category/${modalType}`,
+                type: `vehicle/${modalType}`,
                 payload: {...values, id: currentItem.id},
             });
             form.resetFields();
@@ -105,19 +87,17 @@ class ModalForm extends Component{
 
         const { handleConfirm, handleCancel } = this;
 
-        const { dispatch, category, loading } = this.props;
+        const { dispatch, vehicle, loading } = this.props;
 
-        // Recuperando stados y datos desde el modelo category
+        // Recuperando stados y datos desde el modelo vehicle
         const {
             currentItem,
             modalType,
-            modalVisible,
-            categories,
-        } = category;
+            modalVisible
+        } = vehicle;
 
-        const categoryModal = {
+        const vehicleModal = {
             data: modalType == 'create' ? { state: true } : currentItem,
-            categories,
             disabled: modalType == 'detail',
             type: modalType,
             visible: modalVisible,
@@ -127,7 +107,7 @@ class ModalForm extends Component{
             },
             onCancel(){
                 dispatch({
-                    type: 'category/resetcategory'
+                    type: 'vehicle/resetVehicle'
                 });
                 handleCancel();
             }
@@ -135,16 +115,16 @@ class ModalForm extends Component{
 
         return (
             <AddForm
-                {...categoryModal}
+                {...vehicleModal}
                 wrappedComponentRef={(formRef) => this.formRef = formRef}/>
         )
     }
 }
 
-const mapStateToProps = ({category, loading}) => {
+const mapStateToProps = ({vehicle, loading}) => {
     return {
-        category,
-        loading: loading.effects['category/create'] || loading.effects['category/update'],
+        vehicle,
+        loading: loading.effects['vehicle/create'] || loading.effects['vehicle/update'],
     }
 }
 

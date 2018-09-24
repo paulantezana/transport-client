@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "dva";
-import { Button, Input, Card, Row, Col } from 'antd';
+import { Button, Input, Card } from 'antd';
 
 import styles from './index.scss';
 import List from './List';
 import ModalForm from './Form';
-import TreeCategory from 'routes/Category/Tree'
 
 const Search = Input.Search;
 
-class Company extends Component{
+class Vehicle extends Component{
     constructor(props){
         super(props);
         this.onQueryAll = this.onQueryAll.bind(this);
@@ -18,16 +17,16 @@ class Company extends Component{
         this.onQueryAll();
     }
     onQueryAll(clear){
-        const { dispatch, company: {searchText} } = this.props;
+        const { dispatch, vehicle: {searchText} } = this.props;
         dispatch({
-            type: 'company/all',
+            type: 'vehicle/all',
             payload: {
                 search: clear ? '' : searchText,
             }
         });
     }
     render(){
-        const { dispatch, setting, company, loadingAll, loadingUpdate} = this.props;
+        const { dispatch, setting, vehicle, loadingAll, loadingUpdate} = this.props;
         const { onQueryAll } = this;
         const {
             list,
@@ -35,9 +34,9 @@ class Company extends Component{
             current,
             searchText,
             currentItem,
-        } = company;
+        } = vehicle;
 
-        const companyListProps = {
+        const vehicleListProps = {
             current,
             total,
             pageSize: setting.item,
@@ -46,7 +45,7 @@ class Company extends Component{
             loadingUpdate: loadingUpdate,
             onPageChange(page){
                 dispatch({
-                    type:'company/all',
+                    type:'vehicle/all',
                     payload:{
                         current_page: page,
                         search: searchText,
@@ -56,15 +55,15 @@ class Company extends Component{
             onClear(){
                 // Limpiar el campo search text
                 dispatch({
-                    type: 'company/setSearchText',
+                    type: 'vehicle/setSearchText',
                     payload: '',
                 });
-                // Query para mostrar todo los companyos
+                // Query para mostrar todo los vehicleos
                 onQueryAll(true);
             },
             onUpdate(param){
                 dispatch({
-                    type: 'company/update',
+                    type: 'vehicle/update',
                     payload: param
                 });
             },
@@ -73,7 +72,7 @@ class Company extends Component{
             },
             onDelete(param){
                 dispatch({
-                    type: 'company/delete',
+                    type: 'vehicle/delete',
                     payload: param,
                 });
             },
@@ -81,49 +80,39 @@ class Company extends Component{
 
         const onShowModal = (modalType, currentItem = {})=>{
             dispatch({
-                type: 'company/showModal',
+                type: 'vehicle/showModal',
                 payload: { currentItem, modalType },
-            });
-            dispatch({
-                type: 'category/all',
             });
         }
 
         const onSearchText = (search)=>{
             dispatch({
-                type: 'company/setSearchText',
+                type: 'vehicle/setSearchText',
                 payload: search
             });
         }
 
         return (
             <Card bordered={false}>
-                <Row gutter={24}>
-                    <Col xs={9} sm={7} md={6} lg={5} xl={4}>
-                        <TreeCategory/>
-                    </Col>
-                    <Col xs={15} sm={17} md={18} lg={19} xl={20}>
-                        <div className={styles.header}>
-                            <Button icon="plus" type="primary" onClick={()=>onShowModal('create')}>Nuevo</Button>
-                            <Button icon="reload" onClick={()=>this.onQueryAll()}></Button>
-                            <Search placeholder="Buscar companyo" value={searchText} onChange={e=>onSearchText(e.target.value)} onSearch={value => this.onQueryAll()} style={{ width: 200 }}/>
-                            <ModalForm/>
-                        </div>
-                        <List {...companyListProps}/>
-                    </Col>
-                </Row>
+                <div className={styles.header}>
+                    <Button icon="plus" type="primary" onClick={()=>onShowModal('create')}>Nuevo</Button>
+                    <Button icon="reload" onClick={()=>this.onQueryAll()}></Button>
+                    <Search placeholder="Buscar vehicleo" value={searchText} onChange={e=>onSearchText(e.target.value)} onSearch={value => this.onQueryAll()} style={{ width: 200 }}/>
+                    <ModalForm/>
+                </div>
+                <List {...vehicleListProps}/>
             </Card>
         )
     }
 }
 
-const mapStateToProps = ({company, global, loading}) => {
+const mapStateToProps = ({vehicle, global, loading}) => {
     return {
-        company,
+        vehicle,
         setting: global.setting,
-        loadingAll: loading.effects['company/all'],
-        loadingUpdate: loading.effects['company/update'],
+        loadingAll: loading.effects['vehicle/all'],
+        loadingUpdate: loading.effects['vehicle/update'],
     }
 }
 
-export default connect(mapStateToProps)(Company);
+export default connect(mapStateToProps)(Vehicle);

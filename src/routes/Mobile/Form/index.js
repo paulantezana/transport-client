@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Form, Input, Checkbox } from 'antd';
+import { Modal, Form, Input, Checkbox, Icon, Button } from 'antd';
 import { connect } from 'dva';
 
 const formItemLayout = {
@@ -11,16 +11,23 @@ const AddForm = Form.create()(
     class extends React.Component{
         constructor(props){
             super(props);
-            this.state = {
-    
-            }
+            this.state = {}
+            this.generateKey = this.generateKey.bind(this);
         }
+
+        generateKey(){
+            let randomstring = Math.random().toString(36).slice(-8);
+            this.props.form.setFieldsValue({
+                key: randomstring.toUpperCase(),
+            });
+        }
+
         render(){
             const { visible, onCancel, onOk, form, confirmLoading, data } = this.props;
             const { getFieldDecorator } = form;
             return (
                 <Modal 
-                    title="mobileo"
+                    title="Mobil"
                     okText="Guardar"
                     confirmLoading={confirmLoading}
                     onCancel={onCancel}
@@ -48,12 +55,12 @@ const AddForm = Form.create()(
                                 )
                             }
                         </Form.Item>
-                        <Form.Item hasFeedback {...formItemLayout} label="Clave">
+                        <Form.Item {...formItemLayout} label="Clave">
                             {
                                 getFieldDecorator('key', {
                                     initialValue: data.key,
                                 })(
-                                    <Input placeholder="Clave"/>
+                                    <Input addonAfter={<Icon type="lock" onClick={this.generateKey}/>} placeholder="Clave"/>
                                 )
                             }
                         </Form.Item>

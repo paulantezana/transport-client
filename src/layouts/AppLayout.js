@@ -22,6 +22,7 @@ import { app as appConfig } from 'config/app';
 import Dashboard from 'routes/Dashboard';
 import Monitoring from 'routes/Monitoring';
 import Company from 'routes/Company';
+import Vehicle from 'routes/Vehicle';
 import Category from 'routes/Category';
 import Mobile from 'routes/Mobile';
 import Setting from 'routes/Setting';
@@ -159,6 +160,7 @@ class AppLayout extends Component{
                             <PrivateRoute exact path={`${match.url}monitoring`} component={Monitoring}/>
                             <PrivateRoute exact path={`${match.url}services`} component={Category}/>
                             <PrivateRoute exact path={`${match.url}companies`} component={Company}/>
+                            <PrivateRoute exact path={`${match.url}vehicles`} component={Vehicle}/>
                             <PrivateRoute exact path={`${match.url}mobiles`} component={Mobile}/>
                             <PrivateRoute exact path={`${match.url}users`} component={User}/>
                             <PrivateRoute exact path={`${match.url}users/profile`} component={Profile}/>
