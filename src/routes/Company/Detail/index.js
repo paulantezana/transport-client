@@ -4,6 +4,8 @@ import { connect } from 'dva';
 import styles from './index.scss';
 import { service } from 'config/app';
 
+import Vehicle from './Vehicle';
+
 class CompanyDetail extends React.Component {
     constructor(props){
         super(props);
@@ -23,7 +25,7 @@ class CompanyDetail extends React.Component {
                 bordered={false}>
                 <Tabs defaultActiveKey="1">
                     <Tabs.TabPane tab={<span><Icon type="user" />Vehiculos</span>} key="1">
-                        
+                        <Vehicle/>
                     </Tabs.TabPane>
                     <Tabs.TabPane tab={<span><Icon type="user" />Ruta</span>} key="2">
                         

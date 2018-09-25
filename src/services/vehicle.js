@@ -11,8 +11,8 @@ export async function vehicleResetPassword(body) {
 }
 
 // Get all vehicles
-export async function vehicleAll(body) { 
-    return request(`${VEHICLE_API}/all`,{
+export async function vehiclePaginateByCompanyID(body) { 
+    return request(`${VEHICLE_API}/paginate/by/company/id`,{
         method: 'POST',
         body
     })

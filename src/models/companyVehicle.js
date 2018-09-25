@@ -1,7 +1,7 @@
-import { vehiclePaginateByCompanyID, vehicleCreate, vehicleUpdate, vehicleDelete, vehicleSearch } from '../services/vehicle';
+import { vehicleAll, vehicleCreate, vehicleUpdate, vehicleDelete, vehicleSearch } from '../services/vehicle';
 import { Modal, message } from 'antd';
 export default {
-    namespace: 'vehicle',
+    namespace: 'companyVehicle',
     state: {
         list: [],
         total: null,
@@ -15,10 +15,9 @@ export default {
         searchResult: [],
     },
     effects: {
-        *paginateByCompanyID({ payload }, { select, call, put }){
-            const companyID = yield select(({ companyDetail }) => companyDetail.companyID); // Get setting item
+        *all({ payload }, { select, call, put }){
             const setting = yield select(({ global }) => global.setting); // Get setting item
-            const response = yield call(vehiclePaginateByCompanyID,{...payload, limit: setting.item, company_id: companyID});
+            const response = yield call(vehicleAll,{...payload, limit: setting.item});
             if(response.success){
                 yield put({type: 'allSuccess', payload: {
                     list: response.data,
@@ -37,13 +36,12 @@ export default {
                 Modal.error({title: 'Error al consultar el vehicleo', content: response.message});
             }
         },
-        *create({ payload }, { select, call, put }){
-            const companyID = yield select(({ companyDetail }) => companyDetail.companyID); // Get setting item
-            const response = yield call(vehicleCreate,{...payload, company_id: companyID });
+        *create({ payload }, { call, put }){
+            const response = yield call(vehicleCreate,payload);
             if (response.success){
                 yield put({type: 'resetVehicle'});
                 Modal.success({title: 'Crear vehicleo', content: response.message});
-                yield put({type: 'paginateByCompanyID'});
+                yield put({type: 'all'});
             }else{
                 Modal.error({title: 'Error al crear vehicleo', content: response.message});
             }
@@ -63,7 +61,7 @@ export default {
             if (response.success){
                 yield put({type: 'resetVehicle'});
                 message.success("Se elimino el vehicleo con el id = "  + payload.id);
-                yield put({type: 'paginateByCompanyID'});
+                yield put({type: 'all'});
             }else{
                 Modal.error({title: 'Error al actualizar el vehicleo', content: response.message});
             }
