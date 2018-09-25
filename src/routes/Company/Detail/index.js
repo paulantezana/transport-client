@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
-import { Icon, Col, Button, Avatar, Tag, Divider, Card, Tabs } from 'antd';
+import { Icon, Avatar, Divider, Card, Tabs } from 'antd';
 import { connect } from 'dva';
 import styles from './index.scss';
 import { service } from 'config/app';
 
 import Vehicle from './Vehicle';
+import Route from './Route';
 
 class CompanyDetail extends React.Component {
     constructor(props){
@@ -28,7 +29,7 @@ class CompanyDetail extends React.Component {
                         <Vehicle/>
                     </Tabs.TabPane>
                     <Tabs.TabPane tab={<span><Icon type="user" />Ruta</span>} key="2">
-                        
+                        <Route/>
                     </Tabs.TabPane>
                 </Tabs>
             </Card>
