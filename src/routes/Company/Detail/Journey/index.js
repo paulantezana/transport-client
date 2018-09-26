@@ -9,6 +9,8 @@ import Map from './map';
 
 import Spacing from 'components/Spacing';
 
+import UploadModal from './UploadModal';
+
 class Journey extends Component{
     constructor(props){
         super(props);
@@ -86,6 +88,14 @@ class Journey extends Component{
             });
         }
 
+        // Show modal upload
+        const onShowModalUpload = ()=>{
+            dispatch({
+                type: 'journeyDetail/toggleModalUpload',
+                payload: true,
+            });
+        }
+
         return (
             <Fragment>
                 <List {...journeyListProps}/>
@@ -96,7 +106,8 @@ class Journey extends Component{
                 </div>
                 <Map/>
                 <Spacing/>
-                <Button type="primary" icon="cloud-upload">Upload</Button>
+                <Button type="primary" icon="cloud-upload" onClick={()=>onShowModalUpload()}>Upload</Button>
+                <UploadModal/>
             </Fragment>
         )
     }

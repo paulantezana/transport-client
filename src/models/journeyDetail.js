@@ -19,6 +19,8 @@ export default {
         currentItem: {},
         modalType: 'create',
 
+        modalUploadVisible: false,
+
         searchResult: [],
     },
     effects: {
@@ -107,6 +109,9 @@ export default {
         },
         resetJourneyDetail(state, action){
             return {...state, currentItem: {}, modalVisible: false, modalType: 'create'};
+        },
+        toggleModalUpload(state, { payload }){
+            return {...state, modalUploadVisible: payload };
         },
     }
 }

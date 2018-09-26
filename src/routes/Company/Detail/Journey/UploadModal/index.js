@@ -12,12 +12,12 @@ class UploadModal extends React.Component {
         };
     }
     render() {
-        const { journey, dispatch, loading } = this.props;
-        const { modalUploadVisible } = journey;
+        const { journeyDetail, dispatch, loading } = this.props;
+        const { modalUploadVisible } = journeyDetail;
 
         const onCancel = ()=>{
             dispatch({
-                type: 'journey/toggleModalUpload',
+                type: 'journeyDetail/toggleModalUpload',
                 payload: false,
             });
         }
@@ -35,7 +35,7 @@ class UploadModal extends React.Component {
 
         const onSubmit = ()=>{
             dispatch({
-                type: 'journey/uploadjourneys',
+                type: 'journeyDetail/uploadJourneyDetail',
                 payload: {
                     file: this.state.file,
                 },
@@ -44,7 +44,7 @@ class UploadModal extends React.Component {
 
         const onDownloadTemp = ()=>{
             dispatch({
-                type: 'journey/downloadTemp',
+                type: 'journeyDetail/downloadTemp',
             });
         }
 
@@ -60,9 +60,6 @@ class UploadModal extends React.Component {
                     footer={null}
                     onCancel={onCancel}
                 >
-                    <p>Importa la información de tus proveedores desde un archivo xlsx(Excel). El archivo xlsx se puede formatear con: dni, nombre o razón social y otros campos opcionales.</p>
-                    <p> <a onClick={()=>onDownloadTemp()}> <Icon type="layout" /> Descarga la plantilla</a> y abre en Excel para ver el formato con todos los campos aceptados.</p>
-
                     {
                         this.state.file ? (
                             <div>
@@ -87,10 +84,10 @@ class UploadModal extends React.Component {
     }
 }
 
-const mapStateToProps = ({journey, global, loading}) => {
+const mapStateToProps = ({journeyDetail, global, loading}) => {
     return {
-        journey,
-        loading: loading.effects['journey/uploadJourneys'],
+        journeyDetail,
+        loading: loading.effects['journeyDetail/uploadjourneyDetails'],
     }
 }
 

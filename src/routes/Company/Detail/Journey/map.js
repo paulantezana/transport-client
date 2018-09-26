@@ -19,16 +19,32 @@ const MyMapComponent = compose (
             // console.log(this.props,'PROPSSSSSSSSSss');
             DirectionsService.route(
                 {
-                    origin: new google.maps.LatLng(-14.252172, -71.228366),
-                    destination: new google.maps.LatLng(-14.288131, -71.222998),
+                    origin: new google.maps.LatLng(-14.236181, -71.231494),
+                    destination: new google.maps.LatLng(-14.282332, -71.219851),
                     travelMode: google.maps.TravelMode.DRIVING,
                     waypoints: [
+                        {
+                            location: new google.maps.LatLng(-14.248244, -71.238827),
+                            stopover: false,
+                        },
+                        {
+                            location: new google.maps.LatLng(-14.258107, -71.228346),
+                            stopover: false,
+                        },
                         {
                             location: new google.maps.LatLng(-14.271588, -71.226526),
                             stopover: false,
                         },
                         {
-                            location: new google.maps.LatLng(-14.272593, -71.229915),
+                            location: new google.maps.LatLng(-14.277884, -71.229287),
+                            stopover: false,
+                        },
+                        {
+                            location: new google.maps.LatLng(-14.278513, -71.226337),
+                            stopover: false,
+                        },
+                        {
+                            location: new google.maps.LatLng(-14.278305, -71.225125),
                             stopover: false,
                         }
                     ]
@@ -76,8 +92,8 @@ class Maps extends React.PureComponent {
             isMarkerShown: false,
             locations: [
                 {
-                    latitude: -14.268477,
-                    longitude: -71.225880,
+                    latitude: -14.253026,
+                    longitude: -71.230565,
                 },
             ],
         }

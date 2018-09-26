@@ -32,7 +32,7 @@ class LoginForm extends Component{
         return(
             <div>
                 <Form onSubmit={this.handleSubmit} className={styles.form}>
-                    <h1 className={styles.title}>LOGIN</h1>
+                    <h1 className={styles.title}>Transport</h1>
                     <Form.Item hasFeedback>
                         {
                             getFieldDecorator('user_name', {

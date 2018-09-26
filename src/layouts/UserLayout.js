@@ -3,6 +3,8 @@ import { Redirect, Switch, Route } from 'dva/router';
 import { Icon } from 'antd';
 import styles from './UserLayout.scss';
 
+import logo from 'assets/logo.png';
+
 import GlobalFooter from 'components/GlobalFooter';
 
 import LoginPage from '../routes/User/Login';
@@ -13,6 +15,7 @@ class UserLayout extends React.PureComponent {
         const { match } = this.props;
         return (
             <div className={styles.container}>
+                <img src={logo} className={styles.logo}/>
                 <Switch>
                     <Route exact path={`${match.url}/login`} component={LoginPage}/>
                     <Route exact path={`${match.url}/forgot`} component={ForgotPage}/>

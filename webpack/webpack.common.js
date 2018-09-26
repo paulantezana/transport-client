@@ -132,7 +132,7 @@ module.exports = {
         new FaviconsWebpackPlugin({
             logo: './assets/logo.png',
             // background: '#1890ff',
-            title: 'RQSystem',
+            title: 'Transport',
         })
     ]
 };

@@ -1,9 +1,12 @@
 import React from 'react';
+import Monitoring from 'routes/Monitoring';
+
 class Dashboard extends React.Component{
     render(){
         return (
-            <h1>Hola mundo</h1>
+            <Monitoring/>
         )
     }
 }
+
 export default Dashboard;
