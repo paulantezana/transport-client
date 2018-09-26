@@ -2,14 +2,6 @@ import request from '../utilities/request';
 
 const VEHICLE_API = '/vehicle';
 
-// Update vehicle
-export async function vehicleResetPassword(body) { 
-    return request(`${VEHICLE_API}/reset/password`,{
-        method: 'POST',
-        body
-    })
-}
-
 // Get all vehicles
 export async function vehiclePaginateByCompanyID(body) { 
     return request(`${VEHICLE_API}/paginate/by/company/id`,{

@@ -5,7 +5,8 @@ import category from './category';
 import company from './company';
 import companyDetail from './companyDetail';
 import vehicle from './vehicle';
-// import companyVehicle from './companyVehicle';
+import journey from './journey';
+import journeyDetail from './journeyDetail';
 
 const models = app => {
     app.model(global);
@@ -15,7 +16,8 @@ const models = app => {
     app.model(company);
     app.model(companyDetail);
     app.model(vehicle);
-    // app.model(companyVehicle);
+    app.model(journey);
+    app.model(journeyDetail);
 }
 
 export default models;
