@@ -20,5 +20,5 @@ export const docProperties = {
 export const service = {
     path: "https://transport-fast-server.herokuapp.com",
     api_path: "https://transport-fast-server.herokuapp.com/api/v1",
-    socket_location: "https://transport-fast-server.herokuapp.com/api/v1/ws/location",
+    socket_location: "wss://transport-fast-server.herokuapp.com/api/v1/ws/location",
 }
