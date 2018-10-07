@@ -1,51 +1,51 @@
-import request from '../utilities/request';
+import request from '@/utils/request';
 
 const CATEGORY_API = '/category';
 
 // Update category
-export async function categoryResetPassword(body) { 
-    return request(`${CATEGORY_API}/reset/password`,{
+export async function categoryResetPassword(body) {
+    return request(`${CATEGORY_API}/reset/password`, {
         method: 'POST',
-        body
-    })
+        body,
+    });
 }
 
 // Get all categorys
-export async function categoryAll(body) { 
-    return request(`${CATEGORY_API}/all`,{
+export async function categoryAll(body) {
+    return request(`${CATEGORY_API}/all`, {
         method: 'POST',
-        body
-    })
+        body,
+    });
 }
 
 // Get ByID category
-export async function categoryById(body) { 
-    return request(`${CATEGORY_API}/by/id`,{
+export async function categoryById(body) {
+    return request(`${CATEGORY_API}/by/id`, {
         method: 'POST',
-        body
-    })
+        body,
+    });
 }
 
 // Create category
-export async function categoryCreate(body) { 
-    return request(`${CATEGORY_API}/create`,{
+export async function categoryCreate(body) {
+    return request(`${CATEGORY_API}/create`, {
         method: 'POST',
-        body
-    })
+        body,
+    });
 }
 
 // Update category
-export async function categoryUpdate(body) { 
-    return request(`${CATEGORY_API}/update`,{
+export async function categoryUpdate(body) {
+    return request(`${CATEGORY_API}/update`, {
         method: 'PUT',
-        body
-    })
+        body,
+    });
 }
 
 // Delete category
-export async function categoryDelete(body) { 
-    return request(`${CATEGORY_API}/delete`,{
+export async function categoryDelete(body) {
+    return request(`${CATEGORY_API}/delete`, {
         method: 'DELETE',
-        body
-    })
+        body,
+    });
 }

@@ -1,51 +1,51 @@
-import request from '../utilities/request';
+import request from '@/utils/request';
 
 const COMPANY_API = '/company';
 
 // Update company
-export async function companyResetPassword(body) { 
-    return request(`${COMPANY_API}/reset/password`,{
+export async function companyResetPassword(body) {
+    return request(`${COMPANY_API}/reset/password`, {
         method: 'POST',
-        body
-    })
+        body,
+    });
 }
 
 // Get all companys
-export async function companyAll(body) { 
-    return request(`${COMPANY_API}/all`,{
+export async function companyAll(body) {
+    return request(`${COMPANY_API}/all`, {
         method: 'POST',
-        body
-    })
+        body,
+    });
 }
 
 // Get ByID company
-export async function companyById(body) { 
-    return request(`${COMPANY_API}/by/id`,{
+export async function companyById(body) {
+    return request(`${COMPANY_API}/by/id`, {
         method: 'POST',
-        body
-    })
+        body,
+    });
 }
 
 // Create company
-export async function companyCreate(body) { 
-    return request(`${COMPANY_API}/create`,{
+export async function companyCreate(body) {
+    return request(`${COMPANY_API}/create`, {
         method: 'POST',
-        body
-    })
+        body,
+    });
 }
 
 // Update company
-export async function companyUpdate(body) { 
-    return request(`${COMPANY_API}/update`,{
+export async function companyUpdate(body) {
+    return request(`${COMPANY_API}/update`, {
         method: 'PUT',
-        body
-    })
+        body,
+    });
 }
 
 // Delete company
-export async function companyDelete(body) { 
-    return request(`${COMPANY_API}/delete`,{
+export async function companyDelete(body) {
+    return request(`${COMPANY_API}/delete`, {
         method: 'DELETE',
-        body
-    })
+        body,
+    });
 }
