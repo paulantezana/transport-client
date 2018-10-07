@@ -42,7 +42,7 @@ class LoginForm extends Component {
                         })(
                             <Input
                                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                placeholder="Nombre de usuario o email"
+                                placeholder="Usuario"
                             />
                         )}
                     </Form.Item>

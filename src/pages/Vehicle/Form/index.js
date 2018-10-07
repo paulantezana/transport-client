@@ -18,7 +18,7 @@ const AddForm = Form.create()(
             const { getFieldDecorator } = form;
             return (
                 <Modal
-                    title="Empresa"
+                    title="Vehiculo"
                     okText="Guardar"
                     confirmLoading={confirmLoading}
                     onCancel={onCancel}
@@ -31,6 +31,120 @@ const AddForm = Form.create()(
                                 initialValue: data.name,
                                 rules: [{ required: true, message: '¡Por favor un nombre!' }],
                             })(<Input placeholder="Nombre" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Placa">
+                            {getFieldDecorator('license_plate', {
+                                initialValue: data.license_plate,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Nombre" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Año fabricacion">
+                            {getFieldDecorator('fabrication_year', {
+                                initialValue: data.fabrication_year,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Año fabricacion" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Marca">
+                            {getFieldDecorator('brand', {
+                                initialValue: data.brand,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Marca" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Modelo">
+                            {getFieldDecorator('model', {
+                                initialValue: data.model,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Modelo" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Combustible">
+                            {getFieldDecorator('combustible', {
+                                initialValue: data.combustible,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Combustible" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Carroceria">
+                            {getFieldDecorator('bodywork', {
+                                initialValue: data.bodywork,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Carroceria" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Eje">
+                            {getFieldDecorator('axis', {
+                                initialValue: data.axis,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Eje" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Color">
+                            {getFieldDecorator('color', {
+                                initialValue: data.color,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Color" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Wheel">
+                            {getFieldDecorator('wheel', {
+                                initialValue: data.wheel,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Wheel" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Motor">
+                            {getFieldDecorator('motors', {
+                                initialValue: data.motors,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Motor" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Cilindros">
+                            {getFieldDecorator('cylinders', {
+                                initialValue: data.cylinders,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Cilindros" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Nº de serie chasis">
+                            {getFieldDecorator('chassis_series', {
+                                initialValue: data.chassis_series,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Nº de serie chasis" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Asientos">
+                            {getFieldDecorator('seating', {
+                                initialValue: data.seating,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Asientos" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Peso seco">
+                            {getFieldDecorator('dry_weight', {
+                                initialValue: data.dry_weight,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Peso seco" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Peso bruto">
+                            {getFieldDecorator('gross_weight', {
+                                initialValue: data.gross_weight,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Peso bruto" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Carga util">
+                            {getFieldDecorator('useful_load', {
+                                initialValue: data.useful_load,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Carga util" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Longitud">
+                            {getFieldDecorator('length', {
+                                initialValue: data.length,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Longitud" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Alto">
+                            {getFieldDecorator('height', {
+                                initialValue: data.height,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Alto" />)}
+                        </Form.Item>
+                        <Form.Item hasFeedback {...formItemLayout} label="Ancho">
+                            {getFieldDecorator('width', {
+                                initialValue: data.width,
+                                rules: [{ required: true, message: '¡Por favor un nombre!' }],
+                            })(<Input placeholder="Ancho" />)}
                         </Form.Item>
                         <Form.Item {...formItemLayout} label="Estado">
                             {getFieldDecorator('state', {

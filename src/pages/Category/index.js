@@ -53,7 +53,7 @@ class Category extends Component {
 
         return (
             <PageHeaderWrapper
-                title="Categorias"
+                title="Servicios"
                 // content="Lista de productos"
             >
                 <Card bordered={false}>

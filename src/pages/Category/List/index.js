@@ -62,9 +62,7 @@ class DataList extends Component {
                                         Modal.confirm({
                                             title: '¿Estás seguro de eliminar este registro?',
                                             content: a.name,
-                                            okText: 'SI',
                                             okType: 'danger',
-                                            cancelText: 'NO',
                                             onOk() {
                                                 onDelete({ id: a.id });
                                             },

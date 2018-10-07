@@ -102,7 +102,7 @@ class Company extends Component {
 
         return (
             <PageHeaderWrapper
-                title="Categorias"
+                title="Empresas"
                 // content="Lista de productos"
             >
                 <Card bordered={false}>

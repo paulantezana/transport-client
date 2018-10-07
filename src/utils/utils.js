@@ -187,7 +187,6 @@ export function categorize(data) {
     let aux = data.map(item => {
         return { ...item, children: [] };
     });
-    console.log(aux, 'AUX');
     for (let i = 0; i < aux.length; i++) {
         for (let x = 0; x < aux.length; x++) {
             if (aux[i].category_parent_id === aux[x].id) {
